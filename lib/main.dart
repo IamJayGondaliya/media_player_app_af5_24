@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:media_player_app/pages/home_page.dart';
+import 'package:media_player_app/pages/music_page.dart';
 
 void main() {
   runApp(
@@ -15,9 +16,20 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      routes: {
-        '/': (context) => HomePage(),
-      },
+      getPages: [
+        GetPage(
+          name: '/',
+          page: () => const HomePage(),
+        ),
+        GetPage(
+          name: '/music_page',
+          page: () => MusicPage(),
+        ),
+        GetPage(
+          name: '/',
+          page: () => const HomePage(),
+        ),
+      ],
     );
   }
 }

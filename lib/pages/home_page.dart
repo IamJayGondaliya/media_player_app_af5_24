@@ -6,13 +6,13 @@ import 'package:get/get.dart';
 import 'package:media_player_app/controllers/slider_controller.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({super.key});
+  const HomePage({super.key});
 
-  SliderController sliderController = Get.put(
-    SliderController(),
-  );
   @override
   Widget build(BuildContext context) {
+    SliderController sliderController = Get.put(
+      SliderController(),
+    );
     return Scaffold(
       appBar: AppBar(
         title: const Text("Home Page"),
@@ -77,6 +77,20 @@ class HomePage extends StatelessWidget {
                     }),
                   ),
                 ),
+                const Spacer(),
+                ElevatedButton(
+                  onPressed: () {
+                    Get.toNamed(
+                      '/music_page',
+                    );
+                  },
+                  child: const Text("Music Page"),
+                ),
+                ElevatedButton(
+                  onPressed: () {},
+                  child: const Text("Video Page"),
+                ),
+                const Spacer(),
               ],
             );
           },
