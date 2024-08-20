@@ -3,17 +3,31 @@ import 'package:get/get.dart';
 
 class MyAudioController {
   AssetsAudioPlayer audioPlayer = AssetsAudioPlayer();
+  Duration duration = Duration.zero;
 
   MyAudioController() {
     init();
   }
 
   Future<void> init() async {
-    await audioPlayer.open(
+    await audioPlayer
+        .open(
       Audio(
         "lib/assets/audios/desh_rangila.mp3",
+        metas: Metas(
+          image: const MetasImage.network(
+            "https://sm.mashable.com/t/mashable_in/photo/default/arijit-singh-copy_ddzh.1248.jpg",
+          ),
+          title: "Desh Rangila",
+        ),
       ),
       autoStart: false,
+      showNotification: true,
+    )
+        .then(
+      (val) {
+        duration = audioPlayer.current.value!.audio.duration;
+      },
     );
   }
 
@@ -23,6 +37,12 @@ class MyAudioController {
 
   Future<void> pause() async {
     await audioPlayer.pause();
+  }
+
+  Future<void> seek({required int seconds}) async {
+    await audioPlayer.seek(
+      Duration(seconds: seconds),
+    );
   }
 
   getCurrentDuration() {}

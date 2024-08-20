@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:media_player_app/controllers/my_audio_controller.dart';
 
@@ -19,24 +21,22 @@ class MusicPage extends StatelessWidget {
             StreamBuilder(
                 stream: myAudioController.audioPlayer.currentPosition,
                 builder: (context, snapShot) {
-                  double max = 0;
-
-                  if (myAudioController.isPlaying) {
-                    max = myAudioController
-                            .audioPlayer.current.value?.audio.duration.inSeconds
-                            .toDouble() ??
-                        100;
-                  }
+                  double max = myAudioController.duration.inSeconds.toDouble();
 
                   return Row(
                     children: [
-                      Text("00:00"),
+                      const Text("00:00"),
                       Expanded(
                         child: Slider(
                           min: 0,
-                          max: max,
+                          max: myAudioController.duration.inSeconds.toDouble(),
                           value: snapShot.data?.inSeconds.toDouble() ?? 0,
-                          onChanged: (val) {},
+                          onChanged: (val) {
+                            log("$val/$max");
+                            myAudioController.seek(
+                              seconds: val.toInt(),
+                            );
+                          },
                         ),
                       ),
                       Text("${(max.toInt() / 60).toInt()}:${max.toInt() % 60}"),
