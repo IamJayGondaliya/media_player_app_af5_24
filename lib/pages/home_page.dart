@@ -87,7 +87,11 @@ class HomePage extends StatelessWidget {
                   child: const Text("Music Page"),
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.toNamed(
+                      '/video_page',
+                    );
+                  },
                   child: const Text("Video Page"),
                 ),
                 const Spacer(),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:media_player_app/pages/home_page.dart';
 import 'package:media_player_app/pages/music_page.dart';
+import 'package:media_player_app/pages/video_page.dart';
 
 void main() {
   runApp(
@@ -26,8 +27,8 @@ class MyApp extends StatelessWidget {
           page: () => MusicPage(),
         ),
         GetPage(
-          name: '/',
-          page: () => const HomePage(),
+          name: '/video_page',
+          page: () => VideoPage(),
         ),
       ],
     );
